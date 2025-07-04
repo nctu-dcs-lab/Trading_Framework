@@ -14,11 +14,11 @@ do
         do
             for seed in 1 2 3 4 5 6 7 8 9 10;
             do
-                echo python STB3_CombineTest.py --seed "$seed" --env StockEnvCombineTrader --balance 100000 --prob "$prob" --trend_len "$trend_len" --ma "$ma" > CombinerTest/seed"$seed"/CombineTrader_trend_"$trend_len"_prob_"$prob"_ma_"$ma"_seed_"$seed"_Test_DailyMethod_100K.txt 
-                python STB3_CombineTest.py --seed "$seed" --env StockEnvCombineTrader --balance 100000 --prob "$prob" --trend_len "$trend_len" --ma "$ma" > CombinerTest/seed"$seed"/CombineTrader_trend_"$trend_len"_prob_"$prob"_ma_"$ma"_seed_"$seed"_Test_DailyMethod_100K.txt 
+                echo python STB3_CombineTest.py --seed "$seed" --env StockEnvCombineTrader --balance 500000 --prob "$prob" --trend_len "$trend_len" --ma "$ma" > CombinerTest/seed"$seed"/CombineTrader_trend_"$trend_len"_prob_"$prob"_ma_"$ma"_seed_"$seed"_Test_DailyMethod.txt 
+                python STB3_CombineTest.py --seed "$seed" --env StockEnvCombineTrader --balance 500000 --prob "$prob" --trend_len "$trend_len" --ma "$ma" > CombinerTest/seed"$seed"/CombineTrader_trend_"$trend_len"_prob_"$prob"_ma_"$ma"_seed_"$seed"_Test_DailyMethod.txt 
             
-                echo python visualizeReturnCombine.py --filename CombineTrader_trend_"$trend_len"_prob_"$prob"_ma_"$ma"_seed_"$seed"_DailyMethod_100K --seed "$seed"
-                python visualizeReturnCombine.py --filename CombineTrader_trend_"$trend_len"_prob_"$prob"_ma_"$ma"_seed_"$seed"_DailyMethod_100K --seed "$seed"
+                echo python visualizeReturnCombine.py --filename CombineTrader_trend_"$trend_len"_prob_"$prob"_ma_"$ma"_seed_"$seed"_DailyMethod --seed "$seed"
+                python visualizeReturnCombine.py --filename CombineTrader_trend_"$trend_len"_prob_"$prob"_ma_"$ma"_seed_"$seed"_DailyMethod --seed "$seed"
             done
         done
     done

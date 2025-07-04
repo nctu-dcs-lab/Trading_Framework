@@ -1,4 +1,4 @@
-for train_start_year in 2020;
+for train_start_year in 2018 2019 2020 2021;
 do 
     train_end_year=$((train_start_year + 2))
     test_start_year=$((train_start_year + 3))
