@@ -59,80 +59,80 @@ def update_contract_price(date, original_price, original_initial_margin, origina
     contract_price = original_price
     initial_margin = original_initial_margin
     maintenance_margin = original_maintenance_margin
-    
-    if(date == "2020-11-13 13:30:00"):
+
+    if(date == pd.Timestamp("2020-11-13 13:30:00")):
         contract_price = 33250
         initial_margin = 33250
         maintenance_margin = 25500
-    elif(date == "2021-01-06 13:30:00"):
+    elif(date == pd.Timestamp("2021-01-06 13:30:00")):
         contract_price = 37500
         initial_margin = 37500
         maintenance_margin = 28750
-    elif(date == "2021-02-05 13:30:00"):
+    elif(date == pd.Timestamp("2021-02-05 13:30:00")):
         contract_price = 41750
         initial_margin = 41750
         maintenance_margin = 32000
-    elif(date == "2021-05-19 13:30:00"):
+    elif(date == pd.Timestamp("2021-05-19 13:30:00")):
         contract_price = 46000
         initial_margin = 46000
         maintenance_margin = 35250
-    elif(date == "2022-01-26 13:30:00"):
+    elif(date == pd.Timestamp("2022-01-26 13:30:00")):
         contract_price = 50750
         initial_margin = 50750
         maintenance_margin = 39000
-    elif(date == "2022-02-08 13:30:00"):
+    elif(date == pd.Timestamp("2022-02-08 13:30:00")):
         contract_price = 46000
         initial_margin = 46000
         maintenance_margin = 35250
-    elif(date == "2023-01-17 13:30:00"):
+    elif(date == pd.Timestamp("2023-01-17 13:30:00")):
         contract_price = 50750
         initial_margin = 50750
         maintenance_margin = 39000
-    elif(date == "2023-01-31 13:30:00"):
+    elif(date == pd.Timestamp("2023-01-31 13:30:00")):
         contract_price = 46000
         initial_margin = 46000
         maintenance_margin = 35250
-    elif(date == "2023-07-28 13:30:00"):
+    elif(date == pd.Timestamp("2023-07-28 13:30:00")):
         contract_price = 41750
         initial_margin = 41750
         maintenance_margin = 32000
-    elif(date == "2024-02-05 13:30:00"):
+    elif(date == pd.Timestamp("2024-02-05 13:30:00")):
         contract_price = 46000
         initial_margin = 46000
         maintenance_margin = 35250
-    elif(date == "2024-02-16 13:30:00"):
+    elif(date == pd.Timestamp("2024-02-16 13:30:00")):
         contract_price = 41750
         initial_margin = 41750
         maintenance_margin = 32000
-    elif(date == "2024-03-07 13:30:00"):
+    elif(date == pd.Timestamp("2024-03-07 13:30:00")):
         contract_price = 44750
         initial_margin = 44750
         maintenance_margin = 34250
-    elif(date == "2024-05-03 13:30:00"):
+    elif(date == pd.Timestamp("2024-05-03 13:30:00")):
         contract_price = 49500
         initial_margin = 49500
         maintenance_margin = 38000
-    elif(date == "2024-05-17 13:30:00"):
+    elif(date == pd.Timestamp("2024-05-17 13:30:00")):
         contract_price = 54500
         initial_margin = 54500
         maintenance_margin = 41750
-    elif(date == "2024-06-25 13:30:00"):
+    elif(date == pd.Timestamp("2024-06-25 13:30:00")):
         contract_price = 60250
         initial_margin = 60250
         maintenance_margin = 46250
-    elif(date == "2024-08-09 13:30:00"):
+    elif(date == pd.Timestamp("2024-08-09 13:30:00")):
         contract_price = 66250
         initial_margin = 66250
         maintenance_margin = 50750
-    elif(date == "2024-08-22 13:30:00"):
+    elif(date == pd.Timestamp("2024-08-22 13:30:00")):
         contract_price = 73000
         initial_margin = 73000
         maintenance_margin = 56000
-    elif(date == "2024-09-27 13:30:00"):
+    elif(date == pd.Timestamp("2024-09-27 13:30:00")):
         contract_price = 80500
         initial_margin = 80500
         maintenance_margin = 61750
-    elif(date == "2024-11-13 13:30:00"):
+    elif(date == pd.Timestamp("2024-11-13 13:30:00")):
         contract_price = 80500
         initial_margin = 80500
         maintenance_margin = 61750
@@ -176,10 +176,9 @@ for year in range(start_year, end_year+1):
         
         for i in range(len(minute_data)):
             curr_date, curr_time  = get_curr_time(minute_data, i)
-            
             # update contract price and margin
-            contract_price, initial_margin, maintenance_margin = update_contract_price(minute_data.loc[i]["date"], contract_price, initial_margin, maintenance_margin)            
-            
+            contract_price, initial_margin, maintenance_margin = update_contract_price(minute_data.loc[i]["date"], contract_price, initial_margin, maintenance_margin)   
+                     
             if curr_time == '15:15:00':
                 day_idx = day_data[day_data["date"] == curr_date].index.tolist()[0]
             
@@ -222,7 +221,7 @@ for year in range(start_year, end_year+1):
                 if curr_direction == 0 and minute_data.iloc[i]['close'] > cap:
                     curr_direction = 1
                     transaction_fee = minute_data.iloc[i]['close'] * 50 * 0.00002
-                    available_num = int(balance // (contract_price+transaction_fee))
+                    available_num = int((balance*0.8) // (contract_price+transaction_fee))
                     bid_price = minute_data.iloc[i]['close']
                     balance -= (contract_price + transaction_fee) * available_num
                     share_num += available_num
@@ -231,7 +230,7 @@ for year in range(start_year, end_year+1):
                     curr_direction = -1
                     bid_price = minute_data.iloc[i]['close']
                     transaction_fee = minute_data.iloc[i]['close'] * 50 * 0.00002
-                    available_num = int(balance // (contract_price+transaction_fee))
+                    available_num = int((balance*0.8) // (contract_price+transaction_fee))
                     bid_price = minute_data.iloc[i]['close']
                     balance -= (contract_price + transaction_fee) * available_num
                     share_num += available_num
@@ -244,7 +243,7 @@ for year in range(start_year, end_year+1):
                     # open buy
                     curr_direction = 1
                     transaction_fee = minute_data.iloc[i]['close'] * 50 * 0.00002
-                    available_num = int(balance // (contract_price+transaction_fee))
+                    available_num = int((balance*0.8) // (contract_price+transaction_fee))
                     bid_price = minute_data.iloc[i]['close']
                     balance -= (contract_price + transaction_fee) * available_num
                     share_num += available_num
@@ -257,7 +256,7 @@ for year in range(start_year, end_year+1):
                     # open sell     
                     curr_direction = 1
                     transaction_fee = minute_data.iloc[i]['close'] * 50 * 0.00002
-                    available_num = int(balance // (contract_price+transaction_fee))
+                    available_num = int((balance*0.8) // (contract_price+transaction_fee))
                     bid_price = minute_data.iloc[i]['close']
                     balance -= (contract_price + transaction_fee) * available_num
                     share_num += available_num
@@ -265,15 +264,18 @@ for year in range(start_year, end_year+1):
             else:
                 if curr_direction == 1:
                     balance += calculate_share_value(contract_price, minute_data.iloc[i]['close'], bid_price, share_num, curr_direction)
-                    share_num = 0 
+
                 elif curr_direction == -1:
                     balance += calculate_share_value(contract_price, minute_data.iloc[i]['close'], bid_price, share_num, curr_direction)
-                    share_num = 0 
+                print(f'total cost : {total_cost}')
+                print(f'total balance : {total_balance}')
                 print(f'balance : {balance}')
                 print(f'maintenance_margin : {maintenance_margin*share_num}')
                 print(f'balance under margin at {curr_date} {curr_time}')
+                share_num = 0 
 
 
+                
                 profit = balance - 500000
                 total_balance += profit
                 if total_balance < 500000:
@@ -324,7 +326,8 @@ for year in range(start_year, end_year+1):
                 print(f'end month profit : {profit}')  
                 print(f'end month RoR : {profit/500000}')
                 print(f'---------'*5)                             
-                
+
+
 
 print(f'total cost : {total_cost}')
 print(f'total balance : {total_balance}')
