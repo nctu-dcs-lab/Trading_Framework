@@ -54,10 +54,10 @@ trained_csv：記錄訓練操作細節，例如買賣時機等。
 
 ## 注意事項
 
-確保訓練數據文件位於腳本預期的路徑中。
-訓練過程可能因硬件配置而耗時較長，請檢查 train_log 以監控進度。
-若需調整其他超參數（如窗口大小、學習率等），請參考 Sliding_window_train.sh。
-確認 train_log、trained_model 和 trained_csv 的儲存路徑是否已建立。
+- 確保訓練數據文件位於腳本預期的路徑中。
+- 訓練過程可能因硬件配置而耗時較長，請檢查 train_log 以監控進度。
+- 若需調整其他超參數（如窗口大小、學習率等），請參考 Sliding_window_train.sh。
+- 確認 train_log、trained_model 和 trained_csv 的儲存路徑是否已建立。
 
 # 模型測試
 本項目使用 STB3_Tester.py 腳本來測試單一模型的效能，針對 long 或 short 方向的 agent 進行評估。測試過程需要指定訓練好的模型檔案路徑、選擇測試方向，以及設置儲存測試結果的目錄。以下為測試步驟：
@@ -102,11 +102,11 @@ python STB3_Tester.py
 ```
 
 該腳本將根據指定的 curr_trader 測試對應方向的模型，並將測試結果儲存至指定的 save_dir。
-注意事項
+## 注意事項
 
-確保 trained_model 目錄中的模型檔案路徑正確，且檔案存在。
-確認 save_dir 的儲存路徑已建立，或腳本能自動創建。
-若需調整其他參數（如 start_year、end_year 或 init_balance），請參考 STB3_Tester.py 中的 args 設置。
+- 確保 trained_model 目錄中的模型檔案路徑正確，且檔案存在。
+- 確認 save_dir 的儲存路徑已建立，或腳本能自動創建。
+- 若需調整其他參數（如 start_year、end_year 或 init_balance），請參考 STB3_Tester.py 中的 args 設置。
 
 # 框架模擬測試
 使用 CombineTest.sh 來模擬不同準確度下框架的效能。
@@ -140,8 +140,8 @@ python DataPreprocessing.py
 baxh train_model.sh
 ```
 ## 注意事項
-修改config裡的yaml檔來設定訓練、驗證、測試範圍。
-確保model目錄已經建立
+- 修改config裡的yaml檔來設定訓練、驗證、測試範圍。
+- 確保model目錄已經建立
 
 # 框架測試
 使用 CombineTrader.py 來測試框架的效能。
