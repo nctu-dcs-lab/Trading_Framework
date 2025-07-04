@@ -1,0 +1,13 @@
+dataset:
+  train:
+    start_date: "2010-07-04"
+    end_date: "2019-12-17"
+  val:
+    start_date: "2019-12-18"
+    end_date: "2020-06-17"
+  test:
+    start_date: "2020-06-18"
+    end_date: "2020-12-16"
+
+dataloader:
+  batch_size: 16

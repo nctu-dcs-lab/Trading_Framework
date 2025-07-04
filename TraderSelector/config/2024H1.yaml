@@ -1,0 +1,13 @@
+dataset:
+  train:
+    start_date: "2014-01-04"
+    end_date: "2023-06-21"
+  val:
+    start_date: "2023-06-22"
+    end_date: "2023-12-20"
+  test:
+    start_date: "2023-12-21"
+    end_date: "2024-06-19"
+
+dataloader:
+  batch_size: 16
