@@ -21,7 +21,7 @@ conda list
 # 資料集處理
 需要先執行處理資料集才能進行後續的訓練和測試
 ```
-python preprocess.py -r --save_dir synthetic_data_dailyMethod --ma 20 --train_end 2020
+python preprocess.py -r --save_dir synthetic_data_dailyMethod --ma 20 --train_end 2020 --trend_len 76
 ```
 
 # 模型訓練
@@ -33,6 +33,11 @@ python preprocess.py -r --save_dir synthetic_data_dailyMethod --ma 20 --train_en
 
 ## 步驟 1：準備環境
 請確保已按照「環境設置」部分的說明，使用 env.yml 成功創建並啟動 Conda 環境。
+## 步驟 2：註冊環境
+請到StockEnv底下執行
+```
+pip install -e .
+```
 ## 步驟 2：修改訓練範圍
 訓練範圍由 Sliding_window_train.sh 中的 train_start_year 參數控制。預設情況下，訓練範圍涵蓋三年。例如，設置 train_start_year=2018 將使訓練數據範圍為 2018 年至 2020 年。
 ## 步驟 3：執行訓練腳本
